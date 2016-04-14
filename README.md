@@ -14,10 +14,13 @@ Router::get('/product/{product_id}', function() {
 ### USE
 ```php 
 Router::get('/your_route/your_sub_route/{your_param}', 'YourController#Method');
+
 Router::get('/your_other_route/{your_param}/other_route/{other_param}', 'YourController#Method');
+
 Router::post('/your_route', 'YourController#your_method');
+
 Router::post('/your_route/{param}', function() {
-echo "do_something";
+	echo "do_something";
 });
 ```
 ### EXAMPLES
@@ -37,9 +40,8 @@ Router::get('/home','PageController#showHome');
 
 Router::post('/product/tablet/{product_id}/price/{price_id}','ProductController#showOnePrice');
 
-
-
 Router::post('/product/tablet/{product_id}/prices', 'ProductController#showPrices');
+
 Router::post('/product/tablet/{product_id}/prices', function() {
 	echo "show me this goddamn prices!";
 });
