@@ -70,8 +70,8 @@ Class Router
         // If user callback is a function
         if ($callback && gettype($callback) == "object") {
             call_user_func($callback);
-            return http_response_code(200);
-
+            http_response_code(200);
+            return;
         }
 
         // If user gives Controller#method
@@ -90,7 +90,7 @@ Class Router
                 throw new ErrorException('Method ' . $method . " does not belong to controller " . $controller);
 
             call_user_func(array($class, $method));
-            return http_response_code(200);
+            return;
         }
 
         throw new ErrorException('Callback given doesn\'t match with expected case. It must be a function or a Controller#method');
@@ -106,6 +106,7 @@ Class Router
             return;
 
         self::callback($callback);
+        http_response_code(200);
     }
 
     static public function post($route = '', $callback = null)
@@ -117,6 +118,13 @@ Class Router
             return;
 
         self::callback($callback);
+        http_response_code(200);
     }
 
+    static public function error404($callback = null)
+    {
+        self::i();
+        self::callback($callback);
+        http_response_code(404);
+    }
 }
